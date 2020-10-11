@@ -42,3 +42,16 @@ function getProjects() {
     var projects = gProjects.slice();
     return projects
 }
+
+function getProjById(projId) {
+    var proj = gProjects.find(function(project) {
+        return projId === project.id
+    })
+    return proj
+}
+
+// function _getProjIdxById(projId) {
+//     return gProjects.findIndex(function(project) {
+//         return projId === project.id
+//     });
+// }
