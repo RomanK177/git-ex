@@ -20,8 +20,8 @@ function renderProjects() {
             <img class="img-fluid" src="${project.url}" alt="">
         </a>
             <div class="portfolio-caption">
-            <h4>"${project.title}"</h4>
-            <p class="text-muted">Game</p>
+            <h4>${project.title}</h4>
+            <p class="text-muted">${project.labels[0]}</p>
             </div>
         </div>
     `
@@ -48,7 +48,7 @@ function renderModals(projId) {
                         <div class="col-lg-8 mx-auto">
                             <div class="modal-body">
                                 <!-- Project Details Go Here -->
-                                <h2>"${project.name}"</h2>
+                                <h2>"${project.title}"</h2>
                                 <p class="item-intro text-muted">"${project.desc}"</p>
                                 <img class="img-fluid d-block mx-auto" src="${project.url}" alt="">
                                 <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae
@@ -56,7 +56,7 @@ function renderModals(projId) {
                                 <ul class="list-inline">
                                     <li>Date: ${month} ${year}</li>
                                     <li>Client: Threads</li>
-                                    <li>Category: Illustration</li>
+                                    <li>Category: ${project.labels[0]}</li>
                                 </ul>
                                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                 <i class="fa fa-times"></i>
@@ -70,4 +70,11 @@ function renderModals(projId) {
     </div>
         `
     document.querySelector('.portfolioModals-html-inject').innerHTML = strHtmls
+}
+
+function onSubmit() {
+    var mail = document.getElementById('submiterMail').value
+    var subject = document.getElementById('submiterSubject').value
+    var body = document.getElementById('mailBody').value
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${mail}&su='${subject}&body=${body}`, 'Mail')
 }

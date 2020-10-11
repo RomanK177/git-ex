@@ -2,35 +2,35 @@
 const STORAGE_KEY = 'projDB';
 
 var gProjects = []
-
 _createProjects()
+    // createNewProj('bookshop', 'Book Shop', 'Manege your books!', "Store")
 
 function _createProjects() {
     var projects = loadFromStorage(STORAGE_KEY)
     if (!projects || !projects.length) {
         projects = []
-        projects.push(_createProj('minesweeper', 'minesweeper', 'Mine Sweeper', 'Dont blow up!'))
+        projects.push(_createProj('minesweeper', 'Mine Sweeper', 'Dont blow up!', "Game"))
     }
     gProjects = projects
     _saveProjToStorage();
 }
 
-function createNewProj(id, name, title, desc) {
-    var proj = _createProj(id, name, title, desc)
+function createNewProj(name, title, desc, label) {
+    var proj = _createProj(name, title, desc, label)
     gProjects.unshift(proj)
     _saveProjToStorage();
 }
 
 
-function _createProj(id, name, title, desc) {
+function _createProj(name, title, desc, label) {
     return {
-        id: id,
+        id: makeId(4),
         name: name,
         title: title,
         desc: desc,
         url: `img/portfolio/${name}.JPG`,
         publishedAt: Date.now(),
-        labels: []
+        labels: [label]
     }
 }
 
